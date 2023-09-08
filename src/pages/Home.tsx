@@ -1,23 +1,32 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+// import ExploreContainer from '../components/ExploreContainer';
+import { ContentContainer } from "../components/HomeContentContainer";
 import './Home.css';
+
+const creator_info = {
+  'name': 'Yonathan Hot Gabe Sihotang'
+}
 
 const Home: React.FC = () => {
   return (
     <IonPage>
+      {/* Header */}
       <IonHeader>
         <IonToolbar>
-          <IonTitle size="large">Metric Converter</IonTitle>
-          <IonTitle size="small">By: Yonathan Hot Gabe Sihotang</IonTitle>
+          <IonTitle className="title" size="large">Metric Converter</IonTitle>
+          <IonTitle className="title" size="small">By: {creator_info.name}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+
+      {/* Content */}
+      <IonContent fullscreen className='ion-padding'>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Blank</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer />
+        {/* <ExploreContainer /> */}
+        <ContentContainer />
       </IonContent>
     </IonPage>
   );
