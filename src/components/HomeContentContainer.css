@@ -19,3 +19,12 @@
     margin-bottom: 0.25rem;
     margin-top: 0.25rem
 }
+
+.error_container {
+    background-color: #d0342C;
+    text-align: center;
+}
+
+.result_container {
+    background-color: #497a29;
+}

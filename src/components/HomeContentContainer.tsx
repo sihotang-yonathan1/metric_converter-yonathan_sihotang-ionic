@@ -88,6 +88,7 @@ export function ContentContainer(){
     })
     const [inputNumber, setinputNumber] = useState(0)
     const [resultNumber, setResultNumber] = useState(0)
+    const [isInvalidInput, setisInvalidInput] = useState(false)
 
     function handleMetric(event: any){
         for (let metricData of availableMetric){
@@ -113,7 +114,15 @@ export function ContentContainer(){
     }
 
     function handleInputNumber(event: any){
-        setinputNumber(event.target.value)
+        const input_value = parseFloat(event.target.value)
+        if (!isNaN(input_value)){
+            setisInvalidInput(false)
+            setinputNumber(input_value)
+        }
+        else {
+            setinputNumber(-1)
+            setisInvalidInput(true)
+        }
     }
 
     useEffect(() => {
@@ -180,10 +189,8 @@ export function ContentContainer(){
             }}>
 
                 <p>Hasil</p>
-                {   !isInputDisabled &&
-                    <div style={{
-                        borderStyle: "solid"
-                    }}>
+                {   !isInputDisabled && !isInvalidInput &&
+                    <div className="result_container">
                         <p style={{
                             textAlign: "center"
                         }}>
@@ -191,6 +198,15 @@ export function ContentContainer(){
                         </p>
                         
                     </div>
+                }
+                {
+                    isInvalidInput 
+                    && (
+                        <div className="error_container">
+                            <p>Error, input bukan dalam bentuk angka</p>
+                        </div>
+                    )
+
                 }
             </div>
         </div>
