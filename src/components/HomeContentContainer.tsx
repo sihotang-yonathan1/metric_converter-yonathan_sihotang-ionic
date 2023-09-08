@@ -32,7 +32,7 @@ const availableMetric = [
 
 function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIndex, changeFunction}: 
     {isDisabled: boolean, label: string, placeholder: string, metricIndex: number, changeFunction: any}){
-    const selectedUnit = availableMetric[metricIndex].units
+    const selectedUnit = metricIndex !== -1 ? availableMetric[metricIndex].units : null
     
     return (
         <div className="dropdown_input_container">
@@ -42,7 +42,7 @@ function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIn
                 labelPlacement="stacked" 
                 disabled={isDisabled}
                 onIonChange={changeFunction}>
-                {selectedUnit.map(unit => {
+                {selectedUnit && selectedUnit.map(unit => {
                     return (
                         <IonSelectOption
                             value={selectedUnit.indexOf(unit)}
@@ -61,7 +61,7 @@ function SecondRowContentContainer({to_function, from_function, metricIndex, isD
         <div className="dropdown_container">
             <SecondRowItemContentContainer
                 label="Dari"
-                isDisabled={false}
+                isDisabled={isDisabled}
                 placeholder="-- Pilih Satuan"
                 metricIndex={metricIndex}
                 changeFunction={from_function}
@@ -69,7 +69,7 @@ function SecondRowContentContainer({to_function, from_function, metricIndex, isD
 
             <SecondRowItemContentContainer
                 label="Ke"
-                isDisabled={false}
+                isDisabled={isDisabled}
                 placeholder="-- Pilih Satuan"
                 metricIndex={metricIndex}
                 changeFunction={to_function}
@@ -80,7 +80,7 @@ function SecondRowContentContainer({to_function, from_function, metricIndex, isD
 
 
 export function ContentContainer(){
-    const [metricIndex, setMetricIndex] = useState(0)
+    const [metricIndex, setMetricIndex] = useState(-1)
     const [isInputDisabled, setInputDisabled] = useState(true)
     const [convertionInfo, setConversionInfo] = useState({
         'toIndex': 0,
@@ -169,6 +169,8 @@ export function ContentContainer(){
                 type="number"
                 labelPlacement="stacked"
                 onIonChange={handleInputNumber}
+                disabled={isInputDisabled}
+                pattern="[0-9]"
             />
 
             {/* TODO: styling the element */}
@@ -178,13 +180,18 @@ export function ContentContainer(){
             }}>
 
                 <p>Hasil</p>
-                <div style={{
-                    borderStyle: "solid"
-                }}>
-                    <p style={{
-                        textAlign: "center"
-                    }}>{resultNumber}</p>
-                </div>
+                {   !isInputDisabled &&
+                    <div style={{
+                        borderStyle: "solid"
+                    }}>
+                        <p style={{
+                            textAlign: "center"
+                        }}>
+                            {resultNumber}
+                        </p>
+                        
+                    </div>
+                }
             </div>
         </div>
     )
