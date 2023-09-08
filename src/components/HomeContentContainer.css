@@ -6,5 +6,16 @@
 .dropdown_container {
     display: flex;
     flex-direction: row;
-    row-gap: 3%;
+}
+
+.dropdown_input_container {
+    flex: 1;
+    border-color: white;
+    border-style: solid;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem
 }
