@@ -7,49 +7,138 @@ import { useEffect, useState } from "react";
 const availableMetric = [
     {
         'name': 'Panjang',
-        'units': [
-            'km',
-            'hm',
-            'dam',
-            'm',
-            'dm',
-            'cm',
-            'mm'
-        ],
+        'units': [{
+            'name': 'km',
+            'scale': 1, // relative to metric base unit
+            'preprocess_value': 0 // value to add or substract before process
+        },
+        {
+            'name': 'hm',
+            'scale': 1, 
+            'preprocess_value': 0
+        },
+        {
+            'name': 'dam',
+            'scale': 1,
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'm',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'dm',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'cm',
+            'scale': 1, 
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'mm',
+            'scale': 1, 
+            'preprocess_value': 0 
+        }],
         'unit_factor': 10
     },
     {
         'name': 'Massa',
-        'units': [
-            'kg',
-            'hg',
-            'dag',
-            'g',
-            'dg',
-            'cg',
-            'mg'
-        ],
+        'units': [{
+            'name': 'kg',
+            'scale': 1, // relative to metric base unit
+            'preprocess_value': 0 // value to add or substract before process
+        },
+        {
+            'name': 'hg',
+            'scale': 1, 
+            'preprocess_value': 0
+        },
+        {
+            'name': 'dag',
+            'scale': 1,
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'g',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'dg',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'cg',
+            'scale': 1, 
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'mg',
+            'scale': 1, 
+            'preprocess_value': 0 
+        }],
         'unit_factor': 10
     },
     {
         'name': 'Waktu',
-        'units': [
-            'jam',
-            'menit',
-            'detik'
-        ],
+        'units': [{
+            'name': 'jam',
+            'scale': 1, 
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'menit',
+            'scale': 1, 
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'detik',
+            'scale': 1, 
+            'preprocess_value': 0 
+        }],
         'unit_factor': 60
     },
     {
         'name': 'Kuat Arus',
-        'units': [
-            'kA',
-            'hA',
-            'daA',
-            'A',
-            'dA',
-            'mA'
-        ],
+        'units': [{
+            'name': 'kA',
+            'scale': 1, // relative to metric base unit
+            'preprocess_value': 0 // value to add or substract before process
+        },
+        {
+            'name': 'hA',
+            'scale': 1, 
+            'preprocess_value': 0
+        },
+        {
+            'name': 'daA',
+            'scale': 1,
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'A',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'dA',
+            'scale': 1,
+            'preprocess_value': 0
+        },
+        {
+            'name': 'cA',
+            'scale': 1, 
+            'preprocess_value': 0 
+        },
+        {
+            'name': 'mA',
+            'scale': 1, 
+            'preprocess_value': 0 
+        }],
         'unit_factor': 10
     }
 ]
@@ -73,7 +162,7 @@ function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIn
                         <IonSelectOption
                             value={selectedUnit.indexOf(unit)}
                             key={selectedUnit.indexOf(unit)}
-                        >{unit}</IonSelectOption>
+                        >{unit.name}</IonSelectOption>
                     )
                 })}
             </IonSelect>
@@ -106,12 +195,14 @@ function SecondRowContentContainer({to_function, from_function, metricIndex, isD
 
 
 export function ContentContainer(){
-    const [metricIndex, setMetricIndex] = useState(-1)
     const [isInputDisabled, setInputDisabled] = useState(true)
     const [convertionInfo, setConversionInfo] = useState({
+        'selected_metric_index': -1,
         'toIndex': 0,
         'fromIndex': 0,
-        'unit_factor': 10
+        'unit_factor': 10,
+        'src_unit_scale': 1,
+        'dest_unit_scale': 1
     })
     const [inputNumber, setinputNumber] = useState(0)
     const [resultNumber, setResultNumber] = useState(0)
@@ -120,7 +211,10 @@ export function ContentContainer(){
     function handleMetric(event: any){
         for (let metricData of availableMetric){
             if (metricData.name === event.target.value){
-                setMetricIndex(availableMetric.indexOf(metricData))
+                setConversionInfo({
+                    ...convertionInfo,
+                    'selected_metric_index': availableMetric.indexOf(metricData)
+                })
                 setInputDisabled(false)
             }
         }
@@ -153,14 +247,14 @@ export function ContentContainer(){
     }
 
     useEffect(() => {
-        if (metricIndex != -1){
+        if (convertionInfo?.selected_metric_index != -1){
             setInputDisabled(false)
             setConversionInfo({
                 ...convertionInfo,
-                'unit_factor': availableMetric[metricIndex]?.unit_factor
+                'unit_factor': availableMetric?.[convertionInfo?.selected_metric_index]?.unit_factor
             })
         }
-    }, [metricIndex])
+    }, [convertionInfo?.selected_metric_index])
 
     useEffect(() => {
         console.log(convertionInfo)
@@ -173,7 +267,9 @@ export function ContentContainer(){
         else {
             // count based of how many 'stair' space between the index
             const convertionFactor = (convertionInfo?.unit_factor) ** (convertionInfo?.toIndex - convertionInfo?.fromIndex)
-            setResultNumber(inputNumber * convertionFactor)
+            setResultNumber(
+                (inputNumber)
+                * convertionFactor)
         }
     }, [convertionInfo, inputNumber])
 
@@ -201,7 +297,7 @@ export function ContentContainer(){
 
             <SecondRowContentContainer 
                 isDisabled={isInputDisabled} 
-                metricIndex={metricIndex}
+                metricIndex={convertionInfo?.selected_metric_index}
                 to_function={handleConvertionTo}
                 from_function={handleConvertionFrom}
             />            
