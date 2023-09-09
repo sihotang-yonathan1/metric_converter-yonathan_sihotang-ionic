@@ -10,9 +10,9 @@
 
 .dropdown_input_container {
     flex: 1;
-    border-color: white;
+    /* border-color: white;
     border-style: solid;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem; */
     padding: 0.3rem;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
@@ -27,4 +27,30 @@
 
 .result_container {
     background-color: #497a29;
+}
+
+.input_container {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.select_input_ion {
+    border-style: solid;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    border-radius: 1rem;
+}
+
+.input_ion {
+    border-bottom-style: solid;
+}
+
+.input_ion:active{
+    border-bottom-style: solid;
+    border-bottom-color: aqua;
 }

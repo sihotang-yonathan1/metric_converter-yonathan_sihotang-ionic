@@ -14,7 +14,7 @@ const availableMetric = [
             'dm',
             'cm',
             'mm'
-        ]
+        ],
     },
     {
         'name': 'Massa',
@@ -41,7 +41,9 @@ function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIn
                 placeholder={placeholder} 
                 labelPlacement="stacked" 
                 disabled={isDisabled}
-                onIonChange={changeFunction}>
+                onIonChange={changeFunction}
+                className="select_input_ion"
+            >
                 {selectedUnit && selectedUnit.map(unit => {
                     return (
                         <IonSelectOption
@@ -151,7 +153,11 @@ export function ContentContainer(){
             <div>
                 {/* TODO: check if the metric is already clicked */}
                 {/* Dropdown 1 */}
-                <IonSelect label="Pilih Metrik" placeholder="Metrik" onIonChange={handleMetric}>
+                <IonSelect 
+                    label="Pilih Metrik" 
+                    placeholder="Metrik" 
+                    onIonChange={handleMetric}
+                >
                     {availableMetric.map( metric => {
                         return (
                             <IonSelectOption 
@@ -172,16 +178,19 @@ export function ContentContainer(){
             />            
 
             {/* TODO: set error when the data is not in number */}
+            <div className="input_container">
             {/* Input */}
-            <IonInput 
-                label="Input"
-                type="number"
-                labelPlacement="stacked"
-                onIonChange={handleInputNumber}
-                disabled={isInputDisabled}
-                pattern="[0-9]"
-            />
-
+                <IonInput 
+                    label="Input"
+                    type="number"
+                    labelPlacement="stacked"
+                    onIonChange={handleInputNumber}
+                    disabled={isInputDisabled}
+                    pattern="[0-9]"
+                    className="input_ion"
+                    required={true}
+                />
+            </div>
             {/* TODO: styling the element */}
             <div style={{
                 display: "flex",
