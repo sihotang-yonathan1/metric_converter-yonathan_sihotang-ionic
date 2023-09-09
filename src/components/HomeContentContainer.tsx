@@ -1,4 +1,5 @@
-import { IonInput, IonSelect, IonSelectOption } from "@ionic/react";
+import { IonIcon, IonInput, IonSelect, IonSelectOption } from "@ionic/react";
+import { warning } from "ionicons/icons";
 import "./HomeContentContainer.css";
 import { useEffect, useState } from "react";
 
@@ -228,7 +229,12 @@ export function ContentContainer(){
                     isInvalidInput 
                     && (
                         <div className="error_container">
-                            <p>Error, input bukan dalam bentuk angka</p>
+                            <div>
+                                <IonIcon icon={warning} color="#FFFF00"/>
+                            </div>
+                            <div>
+                                <p>Error, input bukan dalam bentuk angka</p>
+                            </div>
                         </div>
                     )
 
