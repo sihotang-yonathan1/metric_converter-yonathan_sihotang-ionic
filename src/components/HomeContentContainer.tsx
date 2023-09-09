@@ -223,14 +223,28 @@ export function ContentContainer(){
     function handleConvertionFrom(event: any){
         setConversionInfo({
             ...convertionInfo,
-            'fromIndex': event.target.value
+            'fromIndex': event.target.value,
+            'src_unit_scale': (
+                availableMetric
+                ?.[convertionInfo?.selected_metric_index]
+                ?.units
+                ?.[event.target.value]
+                ?.scale
+            )
         })
     }
 
     function handleConvertionTo(event: any){
         setConversionInfo({
             ...convertionInfo,
-            'toIndex': event.target.value
+            'toIndex': event.target.value,
+            'dest_unit_scale': (
+                availableMetric
+                ?.[convertionInfo?.selected_metric_index]
+                ?.units
+                ?.[event.target.value]
+                ?.scale
+            )
         })
     }
 
@@ -268,7 +282,7 @@ export function ContentContainer(){
             // count based of how many 'stair' space between the index
             const convertionFactor = (convertionInfo?.unit_factor) ** (convertionInfo?.toIndex - convertionInfo?.fromIndex)
             setResultNumber(
-                (inputNumber)
+                (inputNumber * (convertionInfo?.src_unit_scale / convertionInfo?.dest_unit_scale))
                 * convertionFactor)
         }
     }, [convertionInfo, inputNumber])
