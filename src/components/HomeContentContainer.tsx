@@ -15,6 +15,7 @@ const availableMetric = [
             'cm',
             'mm'
         ],
+        'unit_factor': 10
     },
     {
         'name': 'Massa',
@@ -26,7 +27,8 @@ const availableMetric = [
             'dg',
             'cg',
             'mg'
-        ]
+        ],
+        'unit_factor': 10
     }
 ]
 
@@ -86,7 +88,8 @@ export function ContentContainer(){
     const [isInputDisabled, setInputDisabled] = useState(true)
     const [convertionInfo, setConversionInfo] = useState({
         'toIndex': 0,
-        'fromIndex': 0
+        'fromIndex': 0,
+        'unit_factor': 10
     })
     const [inputNumber, setinputNumber] = useState(0)
     const [resultNumber, setResultNumber] = useState(0)
@@ -130,6 +133,10 @@ export function ContentContainer(){
     useEffect(() => {
         if (metricIndex != -1){
             setInputDisabled(false)
+            setConversionInfo({
+                ...convertionInfo,
+                'unit_factor': availableMetric[metricIndex]?.unit_factor
+            })
         }
     }, [metricIndex])
 
@@ -143,7 +150,7 @@ export function ContentContainer(){
         }
         else {
             // count based of how many 'stair' space between the index
-            const convertionFactor = 10 ** (convertionInfo?.toIndex - convertionInfo?.fromIndex)
+            const convertionFactor = (convertionInfo?.unit_factor) ** (convertionInfo?.toIndex - convertionInfo?.fromIndex)
             setResultNumber(inputNumber * convertionFactor)
         }
     }, [convertionInfo, inputNumber])
