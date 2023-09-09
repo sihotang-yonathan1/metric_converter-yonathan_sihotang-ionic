@@ -29,6 +29,15 @@ const availableMetric = [
             'mg'
         ],
         'unit_factor': 10
+    },
+    {
+        'name': 'Waktu',
+        'units': [
+            'jam',
+            'menit',
+            'detik'
+        ],
+        'unit_factor': 60
     }
 ]
 
