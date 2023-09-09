@@ -39,6 +39,18 @@ const availableMetric = [
             'detik'
         ],
         'unit_factor': 60
+    },
+    {
+        'name': 'Kuat Arus',
+        'units': [
+            'kA',
+            'hA',
+            'daA',
+            'A',
+            'dA',
+            'mA'
+        ],
+        'unit_factor': 10
     }
 ]
 
