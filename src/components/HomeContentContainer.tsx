@@ -140,13 +140,34 @@ const availableMetric = [
             'preprocess_value': 0 
         }],
         'unit_factor': 10
+    },
+    {
+        'name': 'Suhu',
+        'units': [{
+            'name': 'C',
+            'scale': 5,
+            'preprocess_value': 0
+        }, {
+            'name': 'R',
+            'scale': 4,
+            'preprocess_value': 0
+        }, {
+            'name': 'K',
+            'scale': 5,
+            'preprocess_value': 273
+        }, {
+            'name': 'F',
+            'scale': 9,
+            'preprocess_value': 32
+        }],
+        'unit_factor': 1
     }
 ]
 
 function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIndex, changeFunction}: 
     {isDisabled: boolean, label: string, placeholder: string, metricIndex: number, changeFunction: any}){
     const selectedUnit = metricIndex !== -1 ? availableMetric[metricIndex].units : null
-    
+
     return (
         <div className="dropdown_input_container">
             <IonSelect 
@@ -201,6 +222,8 @@ export function ContentContainer(){
         'toIndex': 0,
         'fromIndex': 0,
         'unit_factor': 10,
+        'from_unit_preprocess_value': 0,
+        'to_unit_preprocess_value': 0,
         'src_unit_scale': 1,
         'dest_unit_scale': 1
     })
@@ -230,7 +253,14 @@ export function ContentContainer(){
                 ?.units
                 ?.[event.target.value]
                 ?.scale
-            )
+            ),
+            'from_unit_preprocess_value': (
+                availableMetric
+                ?.[convertionInfo?.selected_metric_index]
+                ?.units
+                ?.[event.target.value]
+                ?.preprocess_value
+            ),
         })
     }
 
@@ -244,7 +274,14 @@ export function ContentContainer(){
                 ?.units
                 ?.[event.target.value]
                 ?.scale
-            )
+            ),
+            'to_unit_preprocess_value': (
+                availableMetric
+                ?.[convertionInfo?.selected_metric_index]
+                ?.units
+                ?.[event.target.value]
+                ?.preprocess_value
+            ),
         })
     }
 
@@ -281,9 +318,13 @@ export function ContentContainer(){
         else {
             // count based of how many 'stair' space between the index
             const convertionFactor = (convertionInfo?.unit_factor) ** (convertionInfo?.toIndex - convertionInfo?.fromIndex)
-            setResultNumber(
-                (inputNumber * (convertionInfo?.src_unit_scale / convertionInfo?.dest_unit_scale))
+            setResultNumber((
+                (
+                    (inputNumber - convertionInfo?.from_unit_preprocess_value)
+                    * (convertionInfo?.dest_unit_scale / convertionInfo?.src_unit_scale))
                 * convertionFactor)
+                + convertionInfo?.to_unit_preprocess_value
+            )
         }
     }, [convertionInfo, inputNumber])
 
