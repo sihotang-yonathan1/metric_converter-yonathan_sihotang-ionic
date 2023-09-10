@@ -389,7 +389,7 @@ export function ContentContainer(){
             }}>
 
                 <p>Hasil</p>
-                {   !isInputDisabled && !isInvalidInput &&
+                {   !isInputDisabled && !isInvalidInput && !isNaN(resultNumber) &&
                     <div className="result_container">
                         <p style={{
                             textAlign: "center"
@@ -400,7 +400,7 @@ export function ContentContainer(){
                     </div>
                 }
                 {
-                    isInvalidInput 
+                    isInvalidInput || isNaN(resultNumber)
                     && (
                         <div className="error_container">
                             <div>
