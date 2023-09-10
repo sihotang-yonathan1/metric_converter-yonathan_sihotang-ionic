@@ -38,6 +38,9 @@
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .select_input_ion {
@@ -51,9 +54,33 @@
 
 .input_ion {
     border-bottom-style: solid;
+    margin-top: 0.5rem;
+    border-color: white;
+    border-radius: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.60rem;
+    background-color: #D8B6A4;
+    color: black
 }
 
-.input_ion:active{
-    border-bottom-style: solid;
-    border-bottom-color: aqua;
+.input_ion:disabled {
+    opacity: 0.4;
+}
+
+.input_ion:invalid {
+    background-color: #d0342C;
+    color: white
+}
+
+.input_ion:valid {
+    background-color: #549a25;
+    color: white
+}
+
+.input_ion:placeholder-shown{
+    background-color: rgb(40, 38, 38);
+    color:antiquewhite
 }

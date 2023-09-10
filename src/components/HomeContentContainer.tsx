@@ -360,7 +360,7 @@ export function ContentContainer(){
             {/* TODO: set error when the data is not in number */}
             <div className="input_container">
             {/* Input */}
-                <IonInput 
+                {/* <IonInput 
                     label="Input"
                     type="number"
                     labelPlacement="stacked"
@@ -369,6 +369,17 @@ export function ContentContainer(){
                     pattern="[0-9]"
                     className="input_ion"
                     required={true}
+                /> */}
+                <label htmlFor="input_element">Input</label>
+                <input
+                    type="number"
+                    onChange={handleInputNumber}
+                    disabled={isInputDisabled}
+                    className="input_ion"
+                    required={true}
+                    id="input_element"
+                    placeholder="123"
+                    step="any"
                 />
             </div>
             {/* TODO: styling the element */}
