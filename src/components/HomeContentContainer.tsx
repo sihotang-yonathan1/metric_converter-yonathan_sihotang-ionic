@@ -182,7 +182,7 @@ function SecondRowItemContentContainer({label, isDisabled, placeholder, metricIn
                     return (
                         <IonSelectOption
                             value={selectedUnit.indexOf(unit)}
-                            key={selectedUnit.indexOf(unit)}
+                            key={`${metricIndex}_${selectedUnit.indexOf(unit)}`}
                         >{unit.name}</IonSelectOption>
                     )
                 })}
