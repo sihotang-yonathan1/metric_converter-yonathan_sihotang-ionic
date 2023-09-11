@@ -400,7 +400,7 @@ export function ContentContainer(){
                     </div>
                 }
                 {
-                    isInvalidInput || isNaN(resultNumber)
+                    (isInvalidInput || isNaN(resultNumber))
                     && (
                         <div className="error_container">
                             <div>
