@@ -11,7 +11,7 @@ Pada setiap metrik terdapat kumpulan satuan pada `units`. Setiap `unit` dalam `u
 ![tutorial_1](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_1.gif)
 2. Pilih Satuan yang di konversi di dropdown Dari dan Ke  
 ![tutorial_2](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_2.gif)
-3. Masukkan nilai angka yang diinginkan  
+3. Masukkan nilai angka yang ingin dihitung
 ![tutorial_3](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_3.gif)
 
 ## Metrik dan Satuan yang didukung
