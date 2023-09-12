@@ -7,9 +7,12 @@ Aplikasi ini menggunakan array yang tersedia di `availableMetric`.
 Pada setiap metrik terdapat kumpulan satuan pada `units`. Setiap `unit` dalam `units` disusun secara berurutan untuk dapat dibandingkan posisi indexnya antara satuan unit konversi `dari` ke `ke`. Perbedaan nilai index ini kemudian dikalikan dengan faktor pengali (`unit_factor`) pada metrik tersebut dan dimasukan ke dalam nilai hasil.
 
 ## Cara Penggunaan
-1. Pilih metrik pada dropdown Pilih metrik
-2. Pilih Satuan yang di konversi di dropdown Dari dan Ke
-3. Masukkan nilai angka yang diinginkan
+1. Pilih metrik pada dropdown Pilih metrik  
+![tutorial_1](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_1.gif)
+2. Pilih Satuan yang di konversi di dropdown Dari dan Ke  
+![tutorial_2](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_2.gif)
+3. Masukkan nilai angka yang diinginkan  
+![tutorial_3](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/tutorial_3.gif)
 
 ## Metrik dan Satuan yang didukung
 1. Panjang:
@@ -47,3 +50,4 @@ Pada setiap metrik terdapat kumpulan satuan pada `units`. Setiap `unit` dalam `u
     - K
 
 ## Demo
+![demo](https://github.com/sihotang-yonathan1/metric_converter-yonathan_sihotang_1-ionic/blob/main/assets/demo_metric_converter.gif)
