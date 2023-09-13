@@ -2,6 +2,12 @@
 Aplikasi ini merupakan aplikasi sederhana yang bertujuan untuk mengkonversi 
 satuan pada suatu metrik.
 
+## Instalasi
+Aplikasi ini dapat didownload melalui google drive melalui link ini  
+[apk-release](https://drive.google.com/drive/folders/1bc_6uSmIs-iFJQlmnGiSf0QvS46Uf6mp?usp=sharing)
+Pada link diatas, download file yang bernama `apk-release.apk`
+
+
 ## Cara Kerja
 Aplikasi ini menggunakan array yang tersedia di `availableMetric`.
 Pada setiap metrik terdapat kumpulan satuan pada `units`. Setiap `unit` dalam `units` disusun secara berurutan untuk dapat dibandingkan posisi indexnya antara satuan unit konversi `dari` ke `ke`. Perbedaan nilai index ini kemudian dikalikan dengan faktor pengali (`unit_factor`) pada metrik tersebut dan dimasukan ke dalam nilai hasil.
